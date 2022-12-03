@@ -1,0 +1,10 @@
+.cardContainer {
+  border: 1px black solid;
+  padding: 16px;
+  font-size: 14px;
+}
+
+.indication {
+  font-size: 10px;
+  margin-top: 8px;
+}
