@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react';
 import logo from '../../logo.svg';
 import { Card } from '../Card';
 import { Data } from './types';
+import './Weather.css';
 
+const TOKEN = 'f764365ebd23ad8f3b4d930db36fc61c434abecfd63f28d9016d52b4345f3784'; 
+const INSEE = '75056'; // paris
 //https://api.weatherstack.com/forecast?access_key=7e07106120f9235225954fb31937fb4b&query=Paris&forecast_days=5&units=m&language=fr
 
 export const Weather = () => {
@@ -10,15 +13,26 @@ export const Weather = () => {
   const [data, setData] = useState<Data>({})
   const [dataAvaible, setDataAvaible] = useState(false)
   useEffect(()=>{
-    // DOC https://api.meteo-concept.com/documentation#forecast-map-day
-    const forecastFetch = fetch('https://api.meteo-concept.com/api/forecast/daily?token=f764365ebd23ad8f3b4d930db36fc61c434abecfd63f28d9016d52b4345f3784&insee=75056');
-    Promise.all([forecastFetch])
-      .then(async (response) => {
-        const weatherResponse = await response[0].json();
-        setData(weatherResponse);
-        setDataAvaible(true);
-      })
-      .catch(console.log);
+    const currentDAte = new Date().toDateString();
+    const localStorageData = localStorage.getItem(currentDAte) ? localStorage.getItem(currentDAte) : '';
+
+    if(localStorageData){
+      setData(JSON.parse(localStorageData));
+      setDataAvaible(true);
+    }else{
+      localStorage.clear();
+      const dataFetch = fetch(`https://api.meteo-concept.com/api/forecast/daily?token=${TOKEN}&insee=${INSEE}`);
+      Promise.all([dataFetch])
+        .then(async (response) => {
+          const weatherResponse = await response[0].json();
+          setData(weatherResponse);
+          console.log('test ->', weatherResponse)
+          setDataAvaible(true);
+          localStorage.setItem(new Date().toDateString(), JSON.stringify(weatherResponse));
+        })
+        .catch(console.log);
+    }
+
 
   },[])
 
@@ -28,11 +42,13 @@ export const Weather = () => {
     );
   }
   return (
-    <div className="Weather">
-      {data.city && (<p>{data.city.name}</p>)}
+    <div className="weather">
+      {data.city && (<p id="cityName">{data.city.name}</p>)}
+      <div className="weatherList">
       {
         data.forecast && data.forecast.slice(0,5).map((item,i) => <Card key={i} day={item}></Card>)
       }
+      </div>
     </div>
   );
 }

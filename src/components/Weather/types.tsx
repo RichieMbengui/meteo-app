@@ -1,6 +1,9 @@
 export type Day = {
-  dt?: number,
-  main?: { temp ?: number, temp_max?: number, temp_min?: number, humidity ?: number},
+  datetime?: string,
+  tmax?: number,
+  tmin?: number,
+  weather?: number,
+  sun_hours?: number,
 }
 
 export type Data = {

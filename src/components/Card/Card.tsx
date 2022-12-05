@@ -7,10 +7,9 @@ export const Card = ({day}:any) => {
         <div className="day">
             <p className="labelDay">{new Date(day.datetime).toDateString()}</p>
         </div>
-        <div className="indication">
-            <p className="cloud">{day.description}</p>
-            <p> Température minimum : {day.tmax} degrès</p>
-            <p> Température maximum : {day.tmin} degrès</p>
+        <div className="info">
+            <p> Température minimum : {day.tmin} ° </p>
+            <p> Température maximum : {day.tmax} ° </p>
         </div>
     </div>
 );
