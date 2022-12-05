@@ -2,6 +2,7 @@ import React from "react";
 import './Card.css';
 
 export const Card = ({day}:any) => {
+    if(!day) return null;
     return (
     <div className="cardContainer">
         <div className="day">
