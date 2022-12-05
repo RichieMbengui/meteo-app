@@ -1,5 +1,7 @@
 # Getting Started with Create React App
 
+Projet weather for PARIS with api https://api.meteo-concept.com/documentation#forecast-city-day
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
