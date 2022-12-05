@@ -9,8 +9,8 @@ export const Card = ({day}:any) => {
             <p className="labelDay">{new Date(day.datetime).toDateString()}</p>
         </div>
         <div className="info">
-            <p> Température minimum : {day.tmin} ° </p>
-            <p> Température maximum : {day.tmax} ° </p>
+            <p> Température minimum : <span className="value">{day.tmin}°C</span></p>
+            <p> Température maximum : <span className="value">{day.tmax}°C</span></p>
         </div>
     </div>
 );

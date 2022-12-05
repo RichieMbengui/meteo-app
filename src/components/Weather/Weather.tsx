@@ -9,7 +9,6 @@ const INSEE = '75056'; // paris
 //https://api.weatherstack.com/forecast?access_key=7e07106120f9235225954fb31937fb4b&query=Paris&forecast_days=5&units=m&language=fr
 
 export const Weather = () => {
-
   const [data, setData] = useState<Data>({})
   const [dataAvaible, setDataAvaible] = useState(false)
   useEffect(()=>{
@@ -26,14 +25,11 @@ export const Weather = () => {
         .then(async (response) => {
           const weatherResponse = await response[0].json();
           setData(weatherResponse);
-          console.log('test ->', weatherResponse)
           setDataAvaible(true);
           localStorage.setItem(new Date().toDateString(), JSON.stringify(weatherResponse));
         })
         .catch(console.log);
     }
-
-
   },[])
 
   if(!dataAvaible) {
