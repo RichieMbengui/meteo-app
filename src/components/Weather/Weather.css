@@ -3,3 +3,13 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+@media all and (max-width: 992px) {
+  .weatherList{
+     flex-direction: column;
+  }
+}
+
+#cityName {
+  font-weight: bold;
+}
