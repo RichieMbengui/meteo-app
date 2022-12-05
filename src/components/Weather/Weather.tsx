@@ -34,7 +34,11 @@ export const Weather = () => {
 
   if(!dataAvaible) {
     return (
-      <img src={logo} className="App-logo" alt="logo" />
+      <>
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>Chargement</p>
+      </>
+
     );
   }
   return (
